@@ -26,6 +26,10 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         'name',
         'email',
         'password',
+        'jenis_kelamin',
+        'weight_kg',
+        'height_cm',
+        'age_years',
     ];
 
     /**
@@ -48,6 +52,9 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'weight_kg' => 'integer',
+            'height_cm' => 'integer',
+            'age_years' => 'integer',
         ];
     }
 
@@ -55,15 +62,32 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
     {
         if ($this->avatar_url) {
             return asset('storage/' . $this->avatar_url);
-        } else {
-            $hash = md5(strtolower(trim($this->email)));
-
-            return 'https://www.gravatar.com/avatar/' . $hash . '?d=mp&r=g&s=250';
         }
+
+        $hash = md5(strtolower(trim($this->email)));
+
+        return 'https://www.gravatar.com/avatar/' . $hash . '?d=mp&r=g&s=250';
+    
     }
 
+    // Cuma role 'admin' yang boleh masuk panel Filament
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->hasRole('super_admin');
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function waterLogs()
+    {
+        return $this->hasMany(WaterLog::class);
+    }
+
+    public function sleepLogs()
+    {
+        return $this->hasMany(SleepLog::class);
     }
 }
