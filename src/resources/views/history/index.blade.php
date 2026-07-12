@@ -5,7 +5,67 @@
 
     <div class="py-8 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
 
-        <p class="text-sm text-[var(--body-text)]">Menampilkan data 14 hari terakhir.</p>
+        <p class="text-sm text-[var(--body-text)]">Menampilkan data 30 hari terakhir.</p>
+
+        {{-- Ringkasan Mingguan --}}
+        <div class="bg-white rounded-2xl shadow-sm p-6">
+            <h3 class="font-display font-semibold text-lg text-[var(--ink)] mb-1">Ringkasan Minggu Ini</h3>
+            <p class="text-xs text-[var(--body-text)] mb-5">Berdasarkan data 7 hari terakhir</p>
+
+            <div class="grid sm:grid-cols-2 gap-5">
+                <div class="rounded-xl bg-[var(--bg-mint)] p-5">
+                    <p class="text-xs font-medium text-[var(--sage-600)] uppercase tracking-wide mb-2">Hidrasi</p>
+                    @if ($weeklySummary['water_total_days'] > 0)
+                        <p class="text-2xl font-display font-bold text-[var(--ink)]">
+                            {{ $weeklySummary['water_avg_actual'] }} ml
+                        </p>
+                        <p class="text-sm text-[var(--body-text)] mt-1">
+                            rata-rata per hari, dari target {{ $weeklySummary['water_avg_requirement'] }} ml
+                        </p>
+                        <p class="text-sm text-[var(--body-text)]">
+                            {{ $weeklySummary['water_cukup_days'] }} dari {{ $weeklySummary['water_total_days'] }} hari tercatat cukup
+                        </p>
+                        @if ($waterTrend)
+                            <p class="text-xs mt-3 {{ $waterTrend['direction'] === 'naik' ? 'text-[var(--sage-600)]' : ($waterTrend['direction'] === 'turun' ? 'text-amber-600' : 'text-[var(--body-text)]') }}">
+                                @if ($waterTrend['direction'] === 'sama')
+                                    Sama seperti minggu lalu
+                                @else
+                                    {{ $waterTrend['direction'] === 'naik' ? 'Naik' : 'Turun' }} {{ $waterTrend['diff'] > 0 ? $waterTrend['diff'] : $waterTrend['diff'] * -1 }} ml dari minggu lalu
+                                @endif
+                            </p>
+                        @endif
+                    @else
+                        <p class="text-sm text-[var(--body-text)]">Belum ada data minggu ini.</p>
+                    @endif
+                </div>
+
+                <div class="rounded-xl bg-[var(--bg-mint)] p-5">
+                    <p class="text-xs font-medium text-[var(--sage-600)] uppercase tracking-wide mb-2">Tidur</p>
+                    @if ($weeklySummary['sleep_total_days'] > 0)
+                        <p class="text-2xl font-display font-bold text-[var(--ink)]">
+                            {{ $weeklySummary['sleep_avg_actual_hours'] }} jam
+                        </p>
+                        <p class="text-sm text-[var(--body-text)] mt-1">
+                            rata-rata per hari, dari target {{ $weeklySummary['sleep_avg_ideal_hours'] }} jam
+                        </p>
+                        <p class="text-sm text-[var(--body-text)]">
+                            {{ $weeklySummary['sleep_debt_days'] }} dari {{ $weeklySummary['sleep_total_days'] }} hari ada hutang tidur
+                        </p>
+                        @if ($sleepTrend)
+                            <p class="text-xs mt-3 {{ $sleepTrend['direction'] === 'membaik' ? 'text-[var(--sage-600)]' : ($sleepTrend['direction'] === 'memburuk' ? 'text-amber-600' : 'text-[var(--body-text)]') }}">
+                                @if ($sleepTrend['direction'] === 'sama')
+                                    Sama seperti minggu lalu
+                                @else
+                                    Kualitas tidur {{ $sleepTrend['direction'] }} dibanding minggu lalu
+                                @endif
+                            </p>
+                        @endif
+                    @else
+                        <p class="text-sm text-[var(--body-text)]">Belum ada data minggu ini.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
 
         {{-- Grafik Air --}}
         <div class="bg-white rounded-2xl shadow-sm p-6">
