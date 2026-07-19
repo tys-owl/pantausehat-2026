@@ -41,7 +41,7 @@ Repositori ini dibuat untuk memenuhi tugas **Capstone Project** Program Studi Si
 - **Sleep Quality Log:** Pencatatan dan evaluasi utang tidur harian.
 - **Data Visualization:** Grafik riwayat & tren hidrasi/tidur (Chart.js).
 - **Manajemen Artikel Kesehatan:** CRUD artikel (judul, isi, gambar, status publikasi) lewat panel admin.
-- **Manajemen Informasi Website:** Pengaturan halaman About, visi-misi, dan logo sistem.
+- **Manajemen Informasi Website:** Pengaturan halaman About, dan logo sistem.
 - **Role & Permission:** Manajemen hak akses pengguna berbasis role (Spatie Permission + Filament Shield).
 - **REST API:** Endpoint API untuk integrasi data kesehatan.
 - **Desain Responsif:** Tampilan menyesuaikan ukuran layar (HP, tablet, laptop).
