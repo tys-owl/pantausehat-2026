@@ -96,6 +96,7 @@ class AdminPanelProvider extends PanelProvider
                 \Awcodes\Overlook\OverlookPlugin::make()
                     ->includes([
                         \App\Filament\Admin\Resources\UserResource::class,
+                        \App\Filament\Admin\Resources\ArticleResource::class,
                     ]),
                 \Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin::make()
                     ->slug('my-profile')

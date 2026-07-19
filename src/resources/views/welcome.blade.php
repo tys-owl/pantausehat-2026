@@ -77,11 +77,11 @@
                     Selaraskan Hidrasi<br> & Tidurmu
                 </h1>
                 <p class="text-base md:text-lg mb-8 max-w-md">
-                    {{ $setting->site_name }} menghitung kebutuhan air dan mengevaluasi utang tidurmu secara personal — berdasarkan berat badan, usia, dan tingkat aktivitas harianmu.
+                    {{ $setting->site_name }} menghitung kebutuhan air dan mengevaluasi utang tidurmu secara personal; berdasarkan berat badan, usia, dan tingkat aktivitas harianmu.
                 </p>
                 <div class="flex gap-4">
                     <a href="{{ route('login') }}" class="btn-primary px-6 py-3 rounded-full font-medium">Login</a>
-                    <a href="{{ route('register') }}" class="btn-outline px-6 py-3 rounded-full font-medium">Registrasi</a>
+                    <a href="{{ route('register') }}" class="btn-outline px-6 py-3 rounded-full font-medium">Registration</a>
                 </div>
             </div>
             <div class="relative">

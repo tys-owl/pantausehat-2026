@@ -42,5 +42,10 @@ class AppServiceProvider extends ServiceProvider
         MountableAction::configureUsing(function (MountableAction $action) {
             $action->modalFooterActionsAlignment(Alignment::Right);
         });
+
+        if (config('app.env') === 'production' || env('APP_ENV') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
     }
 }
